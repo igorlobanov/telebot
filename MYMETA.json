@@ -1,0 +1,61 @@
+{
+   "abstract" : "Telegram bot backend",
+   "author" : [
+      "Igor Lobanov <liol@cpan.org>"
+   ],
+   "dynamic_config" : 0,
+   "generated_by" : "ExtUtils::MakeMaker version 7.34, CPAN::Meta::Converter version 2.150010",
+   "license" : [
+      "artistic_2"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : 2
+   },
+   "name" : "Telebot",
+   "no_index" : {
+      "directory" : [
+         "t",
+         "inc",
+         "t"
+      ]
+   },
+   "prereqs" : {
+      "build" : {
+         "requires" : {
+            "ExtUtils::MakeMaker" : "0"
+         }
+      },
+      "configure" : {
+         "requires" : {
+            "ExtUtils::MakeMaker" : "0"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "Minion" : "10.15",
+            "Mojo::Pg" : "4.23",
+            "Mojolicious" : "9.0",
+            "YAML::XS" : "0.67",
+            "perl" : "5.016"
+         }
+      }
+   },
+   "release_status" : "stable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/igorlobanov/telebot/issues"
+      },
+      "homepage" : "https://github.com/igorlobanov",
+      "license" : [
+         "http://www.opensource.org/licenses/artistic-license-2.0"
+      ],
+      "repository" : {
+         "type" : "git",
+         "url" : "https://github.com/igorlobanov/telebot.git",
+         "web" : "https://github.com/igorlobanov/telebot"
+      }
+   },
+   "version" : "0.01",
+   "x_serialization_backend" : "JSON::PP version 4.02"
+}
