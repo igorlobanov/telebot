@@ -17,7 +17,6 @@ Telebot::Handler::ChatMember - Base class for telegram update part chat_member h
     my $handler = Telebot::Handler::ChatMember->new(
         app => $app,
         payload => {
-            message_id => 777,
             from => {
                 id => 999,
                 is_bot => \0,
