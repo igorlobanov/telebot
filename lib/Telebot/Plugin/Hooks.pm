@@ -75,4 +75,48 @@ sub register {
 
 1;
 
-__DATA__
+=pod
+ 
+=encoding utf8
+
+=head1 NAME
+ 
+Telebot::Plugin::Hooks - Defines hooks which initialize application environment.
+
+=head1 DESCRIPTION
+
+L<Telebot::Plugin::Hooks> - plugin which makes required for Telebot application actions
+at the beginning and in the end of work.
+
+When hypnotoad server of application starts these hooks
+initialize Minion workers, define route for Telegram webhook
+and inform Telegram about created webhook.
+
+When hypnotoad server stopped hooks kill started with hypnotoad
+Minion workers but not which ones which were started in other way.
+
+So main purpose of this module is prepare application to interact with Telegram
+via webhook and process Telegram updates via minion tasks.
+
+=head1 METHODS
+
+L<Telebot::Plugin::Hooks> inherits all methods from L<Mojolicious::Plugin> and implements the following new ones.
+
+=head2 register
+    
+    my $tg = $plugin->register(Mojolicious->new);
+
+Register plugin in Mojolicious application and define hooks.
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright (C) 2022, Igor Lobanov.
+This program is free software, you can redistribute it and/or modify it under the terms of the Artistic License version
+2.0.
+
+=head1 SEE ALSO
+
+L<https://github.com/igorlobanov/telebot>, L<Mojolicious::Guides>, L<https://mojolicious.org>,
+L<https://core.telegram.org/bots/api>.
+
+=cut
