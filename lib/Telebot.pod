@@ -64,7 +64,7 @@ B<payload> - data recieved from update,
 B<update_id> - Telegram ID of update.
 
 Handler B<Update> gets full update paypload.
-Typed updates gets only corresponding part of update.
+Typed handlers gets only corresponding part of update.
 
 For example if incoming update contain message -
 two handlers will be executed - Update and Message.
