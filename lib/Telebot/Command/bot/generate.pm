@@ -35,6 +35,29 @@ sub run {
     # Templates
     $self->render_to_rel_file('layout',  "$name/templates/layouts/default.html.ep");
     $self->render_to_rel_file('site_index', "$name/templates/site/index.html.ep");
+    
+    # Handlers
+    for my $type (qw(
+        Update
+        CallbackQuery
+        ChannelPost
+        ChatJoinRequest
+        ChatMember
+        ChosenInlineResult
+        EditedChannelPost
+        EditedMessage
+        InlineQuery
+        Message
+        MyChatMember
+        Poll
+        PollAnswer
+        PreCheckoutQuery
+        ShippingQuery
+    )) {
+        my $handler = "${class}::Handler::${type}";
+        my $path       = class_to_path $handler;
+        $self->render_to_rel_file('handler', "$name/lib/$path", {class => $handler});
+    }
 }
 
 1;
@@ -213,3 +236,15 @@ done_testing();
         )],
     }
 }
+
+@@ handler
+package <%= $class %>;
+use Mojo::Base 'Telebot::Handler', -signatures;
+
+sub run ($self) {
+    # Magic here
+    
+    $self;
+}
+
+1;
