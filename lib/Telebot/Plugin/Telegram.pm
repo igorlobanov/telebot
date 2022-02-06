@@ -26,6 +26,7 @@ sub register {
     $self->app($app);
     $self->ua(Mojo::UserAgent->new->inactivity_timeout(0));
     $self->config($app->config->{telegram} ? $app->config->{telegram} : $config || {});
+    $self->config->{token} ||= $ENV{TEST_TELEBOT_TOKEN}; 
     croak 'Setup bot token in config' if !$self->config->{token};
     $self->allowed_updates(
         c(@{$self->config->{allowed_updates}})
@@ -50,6 +51,9 @@ sub register {
         }
     }
 
+    # $app->tg->config()
+    $app->helper('tg.config' => sub ($c) { $self->config });
+
     # $app->tg->handlers()
     $app->helper('tg.handlers' => sub ($c) { $self->handlers });
     
@@ -70,7 +74,6 @@ sub register {
     # $app->tg->request()
     $app->helper('tg.request' => sub ($c, $method, $payload) {
         $self->app->log->info("Request $method");
-        my $db = $self->app->connect->db;
         my $tx = $self->ua->build_tx(
             POST => $self->app->tg->url($method),
             _prepare_payload($payload, $app),
@@ -254,6 +257,10 @@ Return L<Mojo::Collection> of allowed updates (set of updates which Telegram sen
 =head2 tg->extract_commands
 
 Extract from text bot commands and return them as L<Mojo::Collection>
+
+=head2 tg->config
+
+Returns config of plugin.
 
 =head1 METHODS
 
